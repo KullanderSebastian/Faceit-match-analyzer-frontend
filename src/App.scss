@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Slab', serif;;
+}
+
+p, span, td {
+    color: #A2A2A2;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid white;
+    padding-bottom: 10px;
+}
+
+.fullPageWrapper {
+    background-color: #1F1F1F;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 20px;
+}
+
+
+.gameInfoWrapper {
+    height: 90%;
+    width: 90%;
+    background-color: gray;
+    margin: 0 auto;
+    position:sticky;
+    display: flex;
+    flex-direction: row;
+}
+
+.panel {
+    height: 100%;
+    width: 35%;
+    background-color: #1F1F1F;
+
+    .teamOne {
+        justify-content: space-around;
+    }
+
+    .teamTwo {
+        justify-content: space-around;
+    }
+}
+
+#teamName {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.playerCards {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    img {
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .playerCard {
+        width: 100%;
+        background-color: #161616;
+        padding: 15px;
+        border-radius: 5px;
+
+        .playerNameElo {
+            display: flex;
+            justify-content: space-between;
+            vertical-align: middle;
+
+            span {
+                position: relative;
+                top: -11px;
+            }
+
+            span:first-of-type {
+                padding-left: 5px;
+            }
+
+            span:last-of-type {
+                padding-right: 5px;
+            }
+
+            .avatarName span {
+                position: relative;
+                top: -8px;
+                color: #FFFFFF;
+            }
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .singleStat {
+
+                p:first-of-type {
+                    color: white;
+                }
+
+                p:last-of-type {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+.mapPanel {
+    display: flex;
+    width: 30%;
+    background-color: #1F1F1F;
+    padding-top: 37px;
+}
+
+.mapCard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+
+    .mapSection {
+        background-color: #161616;
+        padding: 10px;
+        margin-left: 30px;
+        margin-right: 30px;
+        border-radius: 5px;
+
+        p {
+            color: white;
+            font-size: 18px;
+            padding-bottom: 10px;
+        }
+
+        span {
+            color: white;
+        }
+    }
+
+    .winPercentage {
+        display: flex;
+        justify-content: center;
+    }
+
+    .bar {
+        margin: 0 auto;
+        width: 55%;
+        height: 20px;
+        background-color: #31241D;
+
+        .middleBar {
+            height: 20px;
+            background-color: #FD5500;
+            position: relative;
+        }
+    }
+}
