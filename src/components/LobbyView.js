@@ -1,8 +1,10 @@
 import '.././App.scss';
+import ".././skeleton.scss";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import SkeletonLobby from "./SkeletonLobby";
+import PlayerCard from "./PlayerCard";
 import matchesData from ".././matchData.json";
-import defaultImg from ".././img/default.jpg";
 
 function LobbyView() {
     const location = useLocation();
@@ -20,34 +22,7 @@ function LobbyView() {
 
     let left;
 
-
     let mapDiff = {};
-
-
-
-    const getLevel = (elo) => {
-        if (elo < 801) {
-            return 1;
-        } else if (elo < 951) {
-            return 2;
-        } else if (elo < 1101) {
-            return 3;
-        } else if (elo < 1251) {
-            return 4;
-        } else if (elo < 1401) {
-            return 5;
-        } else if (elo < 1551) {
-            return 6;
-        } else if (elo < 1701) {
-            return 7;
-        } else if (elo < 1851) {
-            return 8;
-        } else if (elo < 2000) {
-            return 9;
-        } else if (elo > 2000 ) {
-            return 10;
-        }
-    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -64,10 +39,10 @@ function LobbyView() {
     }, []);
 
     if (!dataIsLoaded) {
-        return null;
+        return (
+            <SkeletonLobby />
+        );
     } else {
-        console.log(matchData);
-
                 matchData.faction1.map(obj => {
                         fullElo.faction1 += parseFloat(obj.elo);
                 })
@@ -140,37 +115,17 @@ function LobbyView() {
                     <p id="teamName">team_{matchData.faction1[0].nickname}</p>
                     <div className="playerCards">
                         {matchData.faction1.map(obj => {
-                            return <div className="playerCard">
-                                <div className="playerNameElo">
-                                    <div className="avatarName">
-                                        <img src={obj.avatar === "default" ? defaultImg : obj.avatar}></img>
-                                        <span>{obj.nickname}</span>
-                                    </div>
-                                    <div className="eloPicture">
-                                        <span>{obj.elo}</span>
-                                        <img src={`https://cdn-frontend.faceit.com/web/960/src/app/assets/images-compress/skill-icons/skill_level_${getLevel(obj.elo)}_svg.svg`}></img>
-                                    </div>
-                                </div>
-                                <hr></hr>
-                                <div className="stat">
-                                    <div className="singleStat">
-                                        <p>{Math.round((obj.elo / fullElo.faction2) * 100)}%</p>
-                                        <p>Elo weight</p>
-                                    </div>
-                                    <div className="singleStat">
-                                        <p>{Math.round(obj.winrate * 100)}%</p>
-                                        <p>Win rate</p>
-                                    </div>
-                                    <div className="singleStat">
-                                        <p>{Math.round(obj.avg_kills)} / {Math.round(obj.avg_hs * 100)}%</p>
-                                        <p>Avg / HS</p>
-                                    </div>
-                                    <div className="singleStat">
-                                        <p>{Math.round(obj.kd * 100) / 100} / {Math.round(obj.kr * 100) / 100}</p>
-                                        <p>KD / KR</p>
-                                    </div>
-                                </div>
-                            </div>
+                            return <PlayerCard
+                                        avatar={obj.avatar}
+                                        nickname={obj.nickname}
+                                        elo={obj.elo}
+                                        winrate={obj.winrate}
+                                        avg_kills={obj.avg_kills}
+                                        avg_hs={obj.avg_hs}
+                                        kd={obj.kd}
+                                        kr={obj.kr}
+                                        fullElo = {fullElo.faction1}
+                                    />;
                         })}
                     </div>
                 </div>
@@ -195,37 +150,17 @@ function LobbyView() {
                     <p id="teamName">team_{matchData.faction2[0].nickname}</p>
                     <div className="playerCards">
                         {matchData.faction2.map(obj => {
-                            return <div className="playerCard">
-                                <div className="playerNameElo">
-                                    <div className="avatarName">
-                                        <img src={obj.avatar === "default" ? defaultImg : obj.avatar}></img>
-                                        <span>{obj.nickname}</span>
-                                    </div>
-                                    <div className="eloPicture">
-                                        <span>{obj.elo}</span>
-                                        <img src={`https://cdn-frontend.faceit.com/web/960/src/app/assets/images-compress/skill-icons/skill_level_${getLevel(obj.elo)}_svg.svg`}></img>
-                                    </div>
-                                </div>
-                                <hr></hr>
-                                <div className="stat">
-                                    <div className="singleStat">
-                                        <p>{Math.round((obj.elo / fullElo.faction2) * 100)}%</p>
-                                        <p>Elo weight</p>
-                                    </div>
-                                    <div className="singleStat">
-                                        <p>{Math.round(obj.winrate * 100)}%</p>
-                                        <p>Win rate</p>
-                                    </div>
-                                    <div className="singleStat">
-                                        <p>{Math.round(obj.avg_kills)} / {Math.round(obj.avg_hs * 100)}%</p>
-                                        <p>Avg / HS</p>
-                                    </div>
-                                    <div className="singleStat">
-                                        <p>{Math.round(obj.kd * 100) / 100} / {Math.round(obj.kr * 100) / 100}</p>
-                                        <p>KD / KR</p>
-                                    </div>
-                                </div>
-                            </div>
+                            return <PlayerCard
+                                        avatar={obj.avatar}
+                                        nickname={obj.nickname}
+                                        elo={obj.elo}
+                                        winrate={obj.winrate}
+                                        avg_kills={obj.avg_kills}
+                                        avg_hs={obj.avg_hs}
+                                        kd={obj.kd}
+                                        kr={obj.kr}
+                                        fullElo = {fullElo.faction2}
+                                    />;
                         })}
                     </div>
                 </div>
