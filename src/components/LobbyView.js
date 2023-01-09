@@ -104,6 +104,7 @@ function LobbyView() {
                 })
 
                 matchData.voteable_maps.map(label => {
+                    console.log(label);
                     mapDiff[label] = mapsAvgWeightFaction1[label].weight - mapsAvgWeightFaction2[label].weight;
                 })
     }
